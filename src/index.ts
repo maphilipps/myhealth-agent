@@ -16,6 +16,7 @@ import {
   type SDKSystemMessage
 } from "@anthropic-ai/claude-agent-sdk";
 import { fitnessToolsServer } from "./tools/fitness-tools.js";
+import { planToolsServer } from "./tools/plan-tools.js";
 import {
   FITNESS_COACH_SYSTEM_PROMPT,
   fitnessSubagents
@@ -52,17 +53,24 @@ async function runFitnessCoach(userPrompt: string): Promise<void> {
       model: "claude-sonnet-4-5",
       systemPrompt: FITNESS_COACH_SYSTEM_PROMPT,
 
-      // Custom fitness tools
+      // Custom MCP tools
       mcpServers: {
-        "fitness-tools": fitnessToolsServer
+        "fitness-tools": fitnessToolsServer,
+        "plan-tools": planToolsServer
       },
 
-      // Allow all fitness tools
+      // Allow all custom tools
       allowedTools: [
+        // Fitness tools
         "mcp__fitness-tools__get_progression",
         "mcp__fitness-tools__log_set",
         "mcp__fitness-tools__interpret_effort",
-        "mcp__fitness-tools__get_form_cues"
+        "mcp__fitness-tools__get_form_cues",
+        // Plan tools
+        "mcp__plan-tools__generate_plan",
+        "mcp__plan-tools__get_split_recommendations",
+        "mcp__plan-tools__calculate_periodization",
+        "mcp__plan-tools__optimize_hybrid_schedule"
       ],
 
       // Subagents for specialized tasks
