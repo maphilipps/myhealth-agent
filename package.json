@@ -1,0 +1,37 @@
+{
+  "name": "myhealth-agent",
+  "version": "1.0.0",
+  "description": "AI-powered fitness coaching agent with progressive overload and RPE-based recommendations",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node --loader ts-node/esm src/index.ts",
+    "build": "tsc",
+    "dev": "node --loader ts-node/esm --watch src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts"
+  },
+  "keywords": [
+    "fitness",
+    "coach",
+    "ai",
+    "claude",
+    "agent",
+    "workout",
+    "progressive-overload"
+  ],
+  "author": "Marc Philipps",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.1.69",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
